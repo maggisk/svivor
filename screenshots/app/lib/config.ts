@@ -8,3 +8,4 @@ const getEnv = (key: string) => {
 
 export const githubClientId = getEnv("GITHUB_CLIENT_ID");
 export const githubClientSecret = getEnv("GITHUB_CLIENT_SECRET");
+export const secrets = getEnv("SECRETS").split(",");

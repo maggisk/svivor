@@ -1,6 +1,7 @@
 import { createCookie, createCookieSessionStorage } from "@remix-run/node";
 import { z } from "zod";
 import { db } from "./db.server";
+import { secrets } from "./config";
 
 const schema = z
   .object({
@@ -17,7 +18,8 @@ type SessionData = z.infer<typeof schema>;
 
 let cookie = createCookie("session", {
   path: "/",
-  sameSite: "lax",
+  sameSite: "strict",
+  secrets,
 });
 
 export const sessionStorage = createCookieSessionStorage({
@@ -30,7 +32,7 @@ export const getUser = async (request: Request) => {
   );
 
   const data: SessionData = session.data;
-  console.log('dta', data);
+  console.log("dta", data);
 
   if (data.auth?.userId && data.auth.expiresAt > Date.now()) {
     return db.user.findFirst({
