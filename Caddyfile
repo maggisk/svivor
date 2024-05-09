@@ -1,0 +1,18 @@
+svivor.net {
+        redir https://www.svivor.net{uri} permanent
+}
+
+www.svivor.net {
+        file_server * {
+                root /web/screenshots/public
+        }
+}
+
+screenshot.svivor.net {
+        file_server * {
+          root /web/screenshots/public
+          pass_thru
+        }
+
+        reverse_proxy :9000
+}
