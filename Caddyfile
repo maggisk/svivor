@@ -8,11 +8,11 @@ www.svivor.net {
 	}
 }
 
-screenshot.svivor.net {
+screenshot.svivor.net, localhost:8080 {
 	file_server * {
 		root /web/screenshots/public
 		pass_thru
 	}
 
-	reverse_proxy :9000
+	reverse_proxy :3000
 }

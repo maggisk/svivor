@@ -2,6 +2,8 @@
 
 set -e
 
+# sudo apt install fonts-indic fonts-noto fonts-noto-cjk
+
 export NVM_DIR="$HOME/.nvm"
 [ -f "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # This loads nvm
 
@@ -23,14 +25,3 @@ for f in $(ls */svivor*.service); do
 		sudo ln -sf "$HOME/svivor/$f" /etc/systemd/system/
 	fi
 done
-
-for d in $(ls -d */); do
-	cd "$d"
-	if [ -f "package.json" ]; then
-		yarn
-		yarn build
-	fi
-	cd -
-done
-
-sudo systemctl restart svivor-screenshot
