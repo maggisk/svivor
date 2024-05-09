@@ -1,0 +1,15 @@
+[Unit]
+Description=svivor.net screenshot service
+After=network.target
+
+[Service]
+Environment=NODE_ENV=PRODUCTION
+Environment=PORT=3000
+Type=simple
+User=svivor
+WorkingDirectory=/home/svivor/svivor/screenshot
+ExecStart=/home/svivor/.nvm/versions/node/v20.13.1/bin/node ./server.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

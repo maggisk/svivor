@@ -6,7 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import radix from "@radix-ui/themes/styles.css";
+import radix from "@radix-ui/themes/styles.css?url";
 import stylesheet from "~/tailwind.css?url";
 import { Theme } from "@radix-ui/themes";
 
