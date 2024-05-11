@@ -6,13 +6,11 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import radix from "@radix-ui/themes/styles.css?url";
 import stylesheet from "~/tailwind.css?url";
-import { Theme } from "@radix-ui/themes";
+import { ThemeModeScript } from "flowbite-react";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
-  { rel: "stylesheet", href: radix },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -23,9 +21,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        <ThemeModeScript />
       </head>
       <body>
-        <Theme>{children}</Theme>
+        {children}
         <ScrollRestoration />
         <Scripts />
       </body>

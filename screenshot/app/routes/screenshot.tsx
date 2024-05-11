@@ -23,6 +23,7 @@ const cookie = z
 
 const schema = z
   .object({
+    "api-key": z.string(),
     url: z.string().url(),
     format: z.enum(["png", "jpeg", "webp"]),
     width: z.coerce.number().min(10).max(2048),
@@ -32,16 +33,11 @@ const schema = z
       .enum(["load", "domcontentloaded", "networkidle0", "networkidle2"])
       .optional()
       .default("load"),
-    timeout: z.coerce
-      .number()
-      .min(1_000)
-      .max(30_000)
-      .optional()
-      .default(20_000),
+    timeout: z.coerce.number().min(1).max(30).optional().default(20),
     quality: z.coerce.number().min(1).max(100).optional().default(80),
     headers: z.array(z.tuple([z.string(), z.string()])).optional(),
     cookies: z.array(cookie).optional(),
-    accept: z.array(z.string().length(3)).optional(),
+    //accept: z.array(z.string().length(3)).optional(),
   })
   .strict();
 
@@ -91,7 +87,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     new Promise<false>((resolve) => {
       setTimeout(() => {
         resolve(false); // false is expected below
-      }, result.data.timeout);
+      }, result.data.timeout * 1000);
     }),
   ]);
 
